@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Birthday</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <style>
+      /* Navbar */
+      .navbar {
+        background-color: #15cce0 !important; /* Warna biru hijau untuk navbar */
+      }
+      .navbar-brand {
+        color: #fff !important; /* Warna teks putih untuk brand */
+        font-weight: bold;
+      }
+
+      /* Jumbotron */
+      .jumbotron {
+        background-color: #f8f9fa; /* Warna abu-abu untuk jumbotron */
+        color: #343a40; /* Warna teks hitam untuk jumbotron */
+        padding: 2rem;
+        margin-bottom: 2rem;
+        position: relative; /* Penempatan relatif untuk animasi gelombang */
+        overflow: hidden; /* Memastikan overflow tersembunyi untuk gelombang */
+      }
+      .photo-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+      .photo-grid img {
+        border-radius: 10px;
+        max-width: 100%;
+        height: auto;
+      }
+      .message-section {
+        padding: 2rem;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        margin-top: 2rem;
+        display: none;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out;
+      }
+      .message-section.show {
+        display: block;
+        max-height: 970px; /* Adjust based on content size */
+      }
+      .btn-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffc107;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Menambahkan efek transisi untuk transformasi dan bayangan kotak */
+        margin: 2rem auto;
+      }
+      .btn-icon:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Menambahkan bayangan saat tombol dihover */
+      }
+      .btn-icon svg {
+        fill: #fff;
+      }
+      .pulse {
+        animation: pulse-animation 1s infinite; /* Animasi denyut */
+      }
+      @keyframes pulse-animation {
+        0% {
+          transform: scale(0.9); /* Skala awal */
+          opacity: 0.7; /* Opasitas awal */
+        }
+        50% {
+          transform: scale(1); /* Skala tengah */
+          opacity: 1; /* Opasitas tengah */
+        }
+        100% {
+          transform: scale(0.9); /* Skala akhir */
+          opacity: 0.7; /* Opasitas akhir */
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- navbar -->
+    <nav class="navbar bg-info-subtle shadow-sm">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <!-- icon kue -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cake2" viewBox="0 0 16 16">
+            <path
+              d="m3.494.013-.595.79A.747.747 0 0 0 3 1.814v2.683q-.224.051-.432.107c-.702.187-1.305.418-1.745.696C.408 5.56 0 5.954 0 6.5v7c0 .546.408.94.823 1.201.44.278 1.043.51 1.745.696C3.978 15.773 5.898 16 8 16s4.022-.227 5.432-.603c.701-.187 1.305-.418 1.745-.696.415-.261.823-.655.823-1.201v-7c0-.546-.408-.94-.823-1.201-.44-.278-1.043-.51-1.745-.696A12 12 0 0 0 13 4.496v-2.69a.747.747 0 0 0 .092-1.004l-.598-.79-.595.792A.747.747 0 0 0 12 1.813V4.3a22 22 0 0 0-2-.23V1.806a.747.747 0 0 0 .092-1.004l-.598-.79-.595.792A.747.747 0 0 0 9 1.813v2.204a29 29 0 0 0-2 0V1.806A.747.747 0 0 0 7.092.802l-.598-.79-.595.792A.747.747 0 0 0 6 1.813V4.07c-.71.05-1.383.129-2 .23V1.806A.747.747 0 0 0 4.092.802zm-.668 5.556L3 5.524v.967q.468.111 1 .201V5.315a21 21 0 0 1 2-.242v1.855q.488.036 1 .054V5.018a28 28 0 0 1 2 0v1.964q.512-.018 1-.054V5.073c.72.054 1.393.137 2 .242v1.377q.532-.09 1-.201v-.967l.175.045c.655.175 1.15.374 1.469.575.344.217.356.35.356.356s-.012.139-.356.356c-.319.2-.814.4-1.47.575C11.87 7.78 10.041 8 8 8c-2.04 0-3.87-.221-5.174-.569-.656-.175-1.151-.374-1.47-.575C1.012 6.639 1 6.506 1 6.5s.012-.139.356-.356c.319-.2.814-.4 1.47-.575M15 7.806v1.027l-.68.907a.94.94 0 0 1-1.17.276 1.94 1.94 0 0 0-2.236.363l-.348.348a1 1 0 0 1-1.307.092l-.06-.044a2 2 0 0 0-2.399 0l-.06.044a1 1 0 0 1-1.306-.092l-.35-.35a1.935 1.935 0 0 0-2.233-.362.935.935 0 0 1-1.168-.277L1 8.82V7.806c.42.232.956.428 1.568.591C3.978 8.773 5.898 9 8 9s4.022-.227 5.432-.603c.612-.163 1.149-.36 1.568-.591m0 2.679V13.5c0 .006-.012.139-.356.355-.319.202-.814.401-1.47.576C11.87 14.78 10.041 15 8 15c-2.04 0-3.87-.221-5.174-.569-.656-.175-1.151-.374-1.47-.575-.344-.217-.356-.35-.356-.356v-3.02a1.935 1.935 0 0 0 2.298.43.935.935 0 0 1 1.08.175l.348.349a2 2 0 0 0 2.615.185l.059-.044a1 1 0 0 1 1.2 0l.06.044a2 2 0 0 0 2.613-.185l.348-.348a.94.94 0 0 1 1.082-.175c.781.39 1.718.208 2.297-.426"
+            />
+          </svg>
+          <!-- akhir icon kue -->
+
+          <!--Happy Birthday -->
+        </a>
+      </div>
+    </nav>
+    <!-- akhir navbar -->
+
+    <!-- jumbotron -->
+    <div class="jumbotron text-center">
+      <h1 class="display-4">Happy Birthday!</h1>
+      <p class="lead">Wishing you all the best on your special day!</p>
+    </div>
+    <!-- akhir jumbotron -->
+
+    <!-- photo grid -->
+    <div class="container">
+      <div class="photo-grid">
+        <img src="https://via.placeholder.com/150" alt="Foto 1" />
+        <img src="https://via.placeholder.com/150" alt="Foto 2" />
+        <img src="https://via.placeholder.com/150" alt="Foto 3" />
+        <img src="https://via.placeholder.com/150" alt="Foto 4" />
+      </div>
+    </div>
+    <!-- akhir photo grid -->
+
+    <!-- button icon -->
+    <div class="text-center">
+      <button class="btn-icon" onclick="toggleMessage()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-heart" viewBox="0 0 16 16">
+          <path
+            fill-rule="evenodd"
+            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l3.235 1.94a2.8 2.8 0 0 0-.233 1.027L1 5.384v5.721l3.453-2.124q.219.416.55.835l-3.97 2.443A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741l-3.968-2.442q.33-.421.55-.836L15 11.105V5.383l-3.002 1.801a2.8 2.8 0 0 0-.233-1.026L15 4.217V4a1 1 0 0 0-1-1zm6 2.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132"
+          />
+        </svg>
+      </button>
+    </div>
+    <!-- akhir button icon -->
+
+    <!-- message section -->
+    <div class="container">
+      <div class="message-section text-center">
+        <h2>Special Birthday Message</h2>
+
+        <p>Wah ga berasa banget ni kamu pasti, udah 19 tahun aja wkwkwk, hah? berasa ya? ya intinya gtdeh hehe..</p>
+        <p>
+          seharusnya ga berasaa.. ya ga sii, soalnya kamu tiba tiba aja ni udah kerja, padahal kamu belum bisa nerima kenyataan kann.. ya kaann.. kalau kamu itu udah lulus sekolahh. tapi nyatanya kamu udah bertemu banyak hal baru, menerima
+          kenyataan baru, menjalani banyak hal baru, ya yang pasti bikin kamu seneng, sedih, kesel. ya segala jenis emosi sering kamu rasain pastikan?.
+        </p>
+        <p>
+          yaa di umur kamu yang udah bisa di bilang dewasa ini, kamu harus bisa lebih baik dalam semuanya. entah prilaku kamu ke orang lain atau bahkan ke diri kamu sendiri. ada saatnya serius dan ada saatnya main main. ada banyak hal lah
+          yang harus kamu pilah pilih.
+        </p>
+        <p>intinya kamu jangan pernah puas sama hari ini, masih banyak hari hari yang lebih tidak terduga, tapi tetap kamu harus jadi diri kamu sendiri.</p>
+        <br />
+        <p>Selamat Ulang Tahun ya sayaanngg, maaf banget aku cuma bisa ngasih ini aja, aku lagi ga punya apa apa sama sekali. jadi, cuma ini yang aku bisa kasih. ya buat apa di pikirin lah yaa..</p>
+        <p>semoga panjang umur, sehat selalu, lancar rejekinya, dan lancar semua urusannya. aamiin..</p>
+        <p>maaf ya aku suka bikin kamu sedih, belum bisa banyak nyenengin kamu, belum bisa jadi apa yang kamu mau. i love youuu &lt;3</p>
+      </div>
+    </div>
+    <!-- akhir message section -->
+
+    <script>
+      function toggleMessage() {
+        const messageSection = document.querySelector(".message-section");
+        messageSection.classList.toggle("show");
+      }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
