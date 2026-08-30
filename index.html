@@ -1,29 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="id">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Birthday</title>
+    <title>Happy Birthday 🎂</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <audio id="bgMusic" src="lagu.mp3" loop autoplay muted playsinline></audio>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
     <style>
+      :root {
+        --pink: #ff6fa5;
+        --pink-dark: #ff3d81;
+        --purple: #8e6bff;
+        --gold: #ffc857;
+        --cream: #fff6fa;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(160deg, #fff0f6 0%, #f3ecff 45%, #eafcff 100%);
+        color: #4a3b52;
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+
+      .title-font {
+        font-family: "Dancing Script", cursive;
+      }
+
+      /* Preloader */
       #preloader {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #fff;
+        inset: 0;
+        background: linear-gradient(160deg, #ffe1ee 0%, #efe4ff 100%);
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        z-index: 1000;
+        z-index: 2000;
+        gap: 1rem;
+        transition: opacity 0.6s ease;
       }
 
       .heart {
-        width: 100px;
-        height: 100px;
+        width: 70px;
+        height: 70px;
         position: relative;
-        background: #e74c3c;
+        background: var(--pink-dark);
         transform: rotate(-45deg);
         animation: beat 1s infinite;
       }
@@ -31,21 +59,27 @@
       .heart::before,
       .heart::after {
         content: "";
-        width: 100px;
-        height: 100px;
+        width: 70px;
+        height: 70px;
         border-radius: 50%;
-        background: #e74c3c;
+        background: var(--pink-dark);
         position: absolute;
       }
 
       .heart::before {
-        top: -50px;
+        top: -35px;
         left: 0;
       }
 
       .heart::after {
-        left: 50px;
+        left: 35px;
         top: 0;
+      }
+
+      #preloader p {
+        color: #a24a7a;
+        font-weight: 500;
+        letter-spacing: 0.5px;
       }
 
       @keyframes beat {
@@ -57,90 +91,308 @@
           transform: scale(0.8) rotate(-45deg);
         }
       }
-      /* Navbar */
-      .navbar {
-        background-color: #15cce0 !important; /* Warna biru hijau untuk navbar */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan */
-      }
-      .navbar-brand {
-        color: #fff !important; /* Warna teks putih untuk brand */
-        font-weight: bold;
+
+      /* Floating background decorations */
+      .bg-decor {
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 0;
       }
 
-      /* Jumbotron */
-      .jumbotron {
-        background-color: #f8f9fa; /* Warna abu-abu untuk jumbotron */
-        color: #343a40; /* Warna teks hitam untuk jumbotron */
-        padding: 2rem;
-        margin-bottom: 2rem;
-        position: relative; /* Penempatan relatif untuk animasi gelombang */
-        overflow: hidden; /* Memastikan overflow tersembunyi untuk gelombang */
+      .balloon {
+        position: absolute;
+        bottom: -150px;
+        font-size: 2.5rem;
+        opacity: 0.85;
+        animation: floatUp linear infinite;
+      }
+
+      @keyframes floatUp {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.85;
+        }
+        90% {
+          opacity: 0.85;
+        }
+        100% {
+          transform: translateY(-110vh) rotate(15deg);
+          opacity: 0;
+        }
+      }
+
+      /* Navbar */
+      .navbar {
+        background: linear-gradient(90deg, var(--pink-dark), var(--purple)) !important;
+        box-shadow: 0 4px 18px rgba(142, 107, 255, 0.25);
+        position: relative;
+        z-index: 10;
+      }
+      .navbar-brand {
+        color: #fff !important;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      /* Hero */
+      .hero {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        padding: 4rem 1.5rem 3rem;
+        overflow: hidden;
+      }
+
+      .hero .display-4 {
+        font-family: "Dancing Script", cursive;
+        font-size: 4rem;
+        font-weight: 700;
+        background: linear-gradient(90deg, var(--pink-dark), var(--purple));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-bottom: 0.5rem;
+      }
+
+      .hero .lead {
+        color: #6b5a72;
+        font-size: 1.15rem;
+      }
+
+      .age-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1.2rem;
+        padding: 0.6rem 1.4rem;
+        border-radius: 999px;
+        background: #fff;
+        box-shadow: 0 8px 20px rgba(255, 111, 165, 0.25);
+        font-weight: 600;
+        color: var(--pink-dark);
+        font-size: 1.05rem;
+      }
+
+      .countdown-note {
+        margin-top: 0.6rem;
+        font-size: 0.9rem;
+        color: #8a7a91;
+      }
+
+      /* Photo grid */
+      .photo-section {
+        position: relative;
+        z-index: 1;
+      }
+      .photo-section h3 {
+        text-align: center;
+        font-family: "Dancing Script", cursive;
+        font-size: 2.2rem;
+        color: var(--purple);
+        margin-bottom: 1.5rem;
       }
       .photo-grid {
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 14px;
         justify-content: center;
       }
       .photo-grid img {
-        border-radius: 10px;
-        max-width: 100%;
-        height: auto;
+        border-radius: 16px;
+        max-width: 220px;
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
         opacity: 1;
-        transition: opacity 1s ease-in-out;
+        border: 5px solid #fff;
+        box-shadow: 0 10px 25px rgba(142, 107, 255, 0.2);
+        transition:
+          opacity 1s ease-in-out,
+          transform 0.3s ease;
       }
-
+      .photo-grid img:hover {
+        transform: translateY(-6px) scale(1.02);
+      }
       .fade-out {
         opacity: 0;
       }
+
+      /* Lock / gate section */
+      .lock-wrapper {
+        position: relative;
+        z-index: 1;
+        max-width: 480px;
+        margin: 3.5rem auto;
+        padding: 0 1rem;
+      }
+      .lock-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 2.2rem 1.8rem;
+        text-align: center;
+        box-shadow: 0 15px 40px rgba(142, 107, 255, 0.22);
+        border: 2px dashed #f0c9dd;
+        transition: transform 0.25s ease;
+      }
+      .lock-card.shake {
+        animation: shake 0.5s;
+      }
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        20% {
+          transform: translateX(-8px);
+        }
+        40% {
+          transform: translateX(8px);
+        }
+        60% {
+          transform: translateX(-6px);
+        }
+        80% {
+          transform: translateX(6px);
+        }
+      }
+      .lock-icon-wrap {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--pink), var(--purple));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        box-shadow: 0 8px 20px rgba(255, 111, 165, 0.35);
+      }
+      .lock-icon-wrap svg {
+        fill: #fff;
+      }
+      .lock-card h4 {
+        font-weight: 600;
+        color: #4a3b52;
+        margin-bottom: 0.4rem;
+      }
+      .lock-card p.hint {
+        color: #8a7a91;
+        font-size: 0.92rem;
+        margin-bottom: 1.4rem;
+      }
+      .date-inputs {
+        display: flex;
+        gap: 0.6rem;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+      .date-inputs select {
+        border-radius: 12px;
+        border: 1.5px solid #eeddf3;
+        padding: 0.55rem 0.7rem;
+        font-weight: 500;
+        color: #4a3b52;
+        background-color: #fdf9fc;
+      }
+      .date-inputs select:focus {
+        outline: none;
+        border-color: var(--purple);
+        box-shadow: 0 0 0 3px rgba(142, 107, 255, 0.15);
+      }
+      .btn-unlock {
+        background: linear-gradient(90deg, var(--pink-dark), var(--purple));
+        border: none;
+        color: #fff;
+        font-weight: 600;
+        padding: 0.65rem 2rem;
+        border-radius: 999px;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .btn-unlock:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 22px rgba(255, 61, 129, 0.35);
+        color: #fff;
+      }
+      .error-text {
+        color: #e6437a;
+        font-size: 0.9rem;
+        margin-top: 0.9rem;
+        min-height: 1.2rem;
+        font-weight: 500;
+      }
+
+      /* Message section */
       .message-section {
-        padding: 2rem;
-        background-color: #f8f9fa;
-        border-radius: 10px;
-        margin-top: 2rem;
+        position: relative;
+        z-index: 1;
+        padding: 2.5rem 2rem;
+        background: #fff;
+        border-radius: 22px;
+        margin: 2.5rem auto;
+        max-width: 760px;
         display: none;
-        overflow: hidden;
-        transition: max-height 0.5s ease-out;
+        box-shadow: 0 20px 50px rgba(142, 107, 255, 0.2);
+        border-top: 6px solid transparent;
+        border-image: linear-gradient(90deg, var(--pink-dark), var(--purple), var(--gold)) 1;
       }
       .message-section.show {
         display: block;
-        max-height: 1900px; /* Adjust based on content size */
+        animation: revealMsg 0.7s ease forwards;
       }
-      .btn-icon {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #ffc107;
-        border: none;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        cursor: pointer;
-        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Menambahkan efek transisi untuk transformasi dan bayangan kotak */
-        margin: 2rem auto;
-      }
-      .btn-icon:hover {
-        transform: scale(1.1);
-        box-shadow: 0 0 15px rgba(227, 30, 30, 0.804); /* Menambahkan bayangan saat tombol dihover */
-      }
-      .btn-icon svg {
-        fill: #fff;
-      }
-      .pulse {
-        animation: pulse-animation 1s infinite; /* Animasi denyut */
-      }
-      @keyframes pulse-animation {
-        0% {
-          transform: scale(0.9); /* Skala awal */
-          opacity: 0.7; /* Opasitas awal */
+      @keyframes revealMsg {
+        from {
+          opacity: 0;
+          transform: translateY(25px);
         }
-        50% {
-          transform: scale(1); /* Skala tengah */
-          opacity: 1; /* Opasitas tengah */
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
-        100% {
-          transform: scale(0.9); /* Skala akhir */
-          opacity: 0.7; /* Opasitas akhir */
+      }
+      .message-section h2 {
+        text-align: center;
+        font-family: "Dancing Script", cursive;
+        font-size: 2.4rem;
+        color: var(--pink-dark);
+        margin-bottom: 1.5rem;
+      }
+      .message-section p {
+        text-align: left;
+        line-height: 1.75;
+        color: #574a5e;
+      }
+      .signature {
+        text-align: center;
+        margin-top: 1.5rem;
+        font-family: "Dancing Script", cursive;
+        font-size: 1.8rem;
+        color: var(--purple);
+      }
+
+      footer {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        padding: 2rem 1rem 3rem;
+        color: #a795ac;
+        font-size: 0.85rem;
+      }
+
+      @media (max-width: 480px) {
+        .hero .display-4 {
+          font-size: 2.7rem;
+        }
+        .photo-grid img {
+          height: 160px;
+          max-width: 47%;
         }
       }
     </style>
@@ -149,34 +401,47 @@
   <body>
     <div id="preloader">
       <div class="heart"></div>
+      <p>Menyiapkan kejutan untukmu...</p>
     </div>
+
+    <!-- decorative floating balloons -->
+    <div class="bg-decor" id="bgDecor"></div>
+
+    <!-- tombol mute/unmute lagu -->
+    <button
+      id="muteBtn"
+      style="position: fixed; bottom: 20px; right: 20px; z-index: 999; border: none; background: #fff; border-radius: 50%; width: 50px; height: 50px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); font-size: 1.3rem; cursor: pointer"
+    >
+      🔇
+    </button>
+
     <!-- navbar -->
-    <nav class="navbar bg-info-subtle shadow-sm">
+    <nav class="navbar shadow-sm">
       <div class="container">
         <a class="navbar-brand" href="#">
-          <!-- icon kue -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cake2" viewBox="0 0 16 16">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
             <path
               d="m3.494.013-.595.79A.747.747 0 0 0 3 1.814v2.683q-.224.051-.432.107c-.702.187-1.305.418-1.745.696C.408 5.56 0 5.954 0 6.5v7c0 .546.408.94.823 1.201.44.278 1.043.51 1.745.696C3.978 15.773 5.898 16 8 16s4.022-.227 5.432-.603c.701-.187 1.305-.418 1.745-.696.415-.261.823-.655.823-1.201v-7c0-.546-.408-.94-.823-1.201-.44-.278-1.043-.51-1.745-.696A12 12 0 0 0 13 4.496v-2.69a.747.747 0 0 0 .092-1.004l-.598-.79-.595.792A.747.747 0 0 0 12 1.813V4.3a22 22 0 0 0-2-.23V1.806a.747.747 0 0 0 .092-1.004l-.598-.79-.595.792A.747.747 0 0 0 9 1.813v2.204a29 29 0 0 0-2 0V1.806A.747.747 0 0 0 7.092.802l-.598-.79-.595.792A.747.747 0 0 0 6 1.813V4.07c-.71.05-1.383.129-2 .23V1.806A.747.747 0 0 0 4.092.802zm-.668 5.556L3 5.524v.967q.468.111 1 .201V5.315a21 21 0 0 1 2-.242v1.855q.488.036 1 .054V5.018a28 28 0 0 1 2 0v1.964q.512-.018 1-.054V5.073c.72.054 1.393.137 2 .242v1.377q.532-.09 1-.201v-.967l.175.045c.655.175 1.15.374 1.469.575.344.217.356.35.356.356s-.012.139-.356.356c-.319.2-.814.4-1.47.575C11.87 7.78 10.041 8 8 8c-2.04 0-3.87-.221-5.174-.569-.656-.175-1.151-.374-1.47-.575C1.012 6.639 1 6.506 1 6.5s.012-.139.356-.356c.319-.2.814-.4 1.47-.575M15 7.806v1.027l-.68.907a.94.94 0 0 1-1.17.276 1.94 1.94 0 0 0-2.236.363l-.348.348a1 1 0 0 1-1.307.092l-.06-.044a2 2 0 0 0-2.399 0l-.06.044a1 1 0 0 1-1.306-.092l-.35-.35a1.935 1.935 0 0 0-2.233-.362.935.935 0 0 1-1.168-.277L1 8.82V7.806c.42.232.956.428 1.568.591C3.978 8.773 5.898 9 8 9s4.022-.227 5.432-.603c.612-.163 1.149-.36 1.568-.591m0 2.679V13.5c0 .006-.012.139-.356.355-.319.202-.814.401-1.47.576C11.87 14.78 10.041 15 8 15c-2.04 0-3.87-.221-5.174-.569-.656-.175-1.151-.374-1.47-.575-.344-.217-.356-.35-.356-.356v-3.02a1.935 1.935 0 0 0 2.298.43.935.935 0 0 1 1.08.175l.348.349a2 2 0 0 0 2.615.185l.059-.044a1 1 0 0 1 1.2 0l.06.044a2 2 0 0 0 2.613-.185l.348-.348a.94.94 0 0 1 1.082-.175c.781.39 1.718.208 2.297-.426"
             />
           </svg>
-          <!-- akhir icon kue -->
-
-          <!--Happy Birthday -->
+          Happy Birthday
         </a>
       </div>
     </nav>
     <!-- akhir navbar -->
 
-    <!-- jumbotron -->
-    <div class="jumbotron text-center">
-      <h1 class="display-4">Happy Birthday!</h1>
-      <p class="lead">Wishing you all the best on your special day!</p>
+    <!-- hero -->
+    <div class="hero">
+      <h1 class="display-4">Happy Birthday! 🎉</h1>
+      <p class="lead">Semoga hari ini penuh senyum, cinta (dari cowokk baru mu ituu), pokoknyaaa semua hal baik untuk kamuuu .</p>
+      <div class="age-badge">🎂 <span id="ageText">Menghitung usia...</span></div>
+      <div class="countdown-note" id="countdownNote"></div>
     </div>
-    <!-- akhir jumbotron -->
+    <!-- akhir hero -->
 
     <!-- photo grid -->
-    <div class="container">
+    <div class="container photo-section">
+      <h3>Kenangan Kita 💕</h3>
       <div class="photo-grid">
         <img src="4.jpg" alt="Foto 1" />
         <img src="1.jpg" alt="Foto 2" />
@@ -186,29 +451,61 @@
     </div>
     <!-- akhir photo grid -->
 
-    <!-- button icon -->
-    <div class="text-center">
-      <button class="btn-icon" onclick="toggleMessage()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-heart" viewBox="0 0 16 16">
-          <path
-            fill-rule="evenodd"
-            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l3.235 1.94a2.8 2.8 0 0 0-.233 1.027L1 5.384v5.721l3.453-2.124q.219.416.55.835l-3.97 2.443A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741l-3.968-2.442q.33-.421.55-.836L15 11.105V5.383l-3.002 1.801a2.8 2.8 0 0 0-.233-1.026L15 4.217V4a1 1 0 0 0-1-1zm6 2.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132"
-          />
-        </svg>
-      </button>
+    <!-- lock / gate -->
+    <div class="lock-wrapper" id="lockWrapper">
+      <div class="lock-card" id="lockCard">
+        <div class="lock-icon-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2" />
+          </svg>
+        </div>
+        <h4>Pesan Terkunci</h4>
+        <p class="hint">Untuk membuka pesan spesial WKWKW, masukkan tanggal yang tepat yaaa :3 🔒</p>
+        <div class="date-inputs">
+          <select id="dateDay" aria-label="Tanggal">
+            <option value="">Tanggal</option>
+          </select>
+          <select id="dateMonth" aria-label="Bulan">
+            <option value="">Bulan</option>
+            <option value="1">Januari</option>
+            <option value="2">Februari</option>
+            <option value="3">Maret</option>
+            <option value="4">April</option>
+            <option value="5">Mei</option>
+            <option value="6">Juni</option>
+            <option value="7">Juli</option>
+            <option value="8">Agustus</option>
+            <option value="9">September</option>
+            <option value="10">Oktober</option>
+            <option value="11">November</option>
+            <option value="12">Desember</option>
+          </select>
+        </div>
+        <button class="btn-unlock" id="unlockBtn">Buka Pesan</button>
+        <div class="error-text" id="errorText"></div>
+      </div>
     </div>
-    <!-- akhir button icon -->
+    <!-- akhir lock / gate -->
 
     <!-- message section -->
     <div class="container">
-      <div class="message-section text-center">
-        <h2>Special Birthday Message</h2>
+      <div class="message-section" id="messageSection">
+        <h2>생일 축하합니다!!!</h2>
 
-        <p>Wah ga berasa banget ni kamu pasti, udah 19 tahun aja wkwkwk, hah? berasa ya? ya intinya gtdeh hehe..</p>
+        <p>
+          sebenernya aku cuma lagi iseng ajasii, karena lagi buka akun Github. eh liat project ini, dan ngerasa jelek banget. yauda aku benerin dikit wkwkkw, semoga kamu ga pernah mikir hal-hal negative selama kita ga ketemu ya, dari pada
+          kamu selalu berspekulasi sendiri lebih baik kamu gausa mikirin dan gausa cari tau yaa.. mungkin bakal bikin kamu lebih baik.
+        </p>
+        <p>oiya udah 2 tahun sejak aku janji sama diri aku sendiri atas ucapan kamu (mungkin kamu lupa). semoga kita di dewasakan oleh semua rasa sakit kita yaa cantikk..</p>
+        <p>oiya 1 lagii, ini teks di bawah nya sama aja kok kayak pas awal aku cuma kasih bunga doang wkwkkw, maap gda uang waktu itu euy, nganggur bahaya bet WKWK.</p>
+        <p>
+          <b>Wah ga berasa banget ni kamu pasti, udah <span id="ageInline">--</span> tahun aja wkwkwk, hah? berasa ya? ya intinya gtdeh hehe..</p>
         <p>
           seharusnya ga berasaa.. ya ga sii, soalnya kamu tiba tiba aja ni udah kerja, padahal kamu belum bisa nerima kenyataan kann.. ya kaann.. kalau kamu itu udah lulus sekolahh. tapi nyatanya kamu udah bertemu banyak hal baru, menerima
           kenyataan baru, menjalani banyak hal baru, ya yang pasti bikin kamu seneng, sedih, kesel. ya segala jenis emosi sering kamu rasain pastikan?.
         </p>
+        <br>
+        <br>
         <p>
           yaa di umur kamu yang udah bisa di bilang dewasa ini, kamu harus bisa lebih baik dalam semuanya. entah prilaku kamu ke orang lain atau bahkan ke diri kamu sendiri. ada saatnya serius dan ada saatnya main main. ada banyak hal lah
           yang harus kamu pilah pilih.
@@ -218,61 +515,173 @@
         <p>Selamat Ulang Tahun ya sayaanngg, maaf banget aku cuma bisa ngasih ini aja, aku lagi ga punya apa apa sama sekali. jadi, cuma ini yang aku bisa kasih. ya buat apa di pikirin lah yaa..</p>
         <p>semoga panjang umur, sehat selalu, lancar rejekinya, dan lancar semua urusannya. aamiin..</p>
         <p>maaf ya aku suka bikin kamu sedih, belum bisa banyak nyenengin kamu, belum bisa jadi apa yang kamu mau. i love youuu &lt;3</p>
+        <div class="signature">— dengan cinta 💌</div>
       </div>
     </div>
     <!-- akhir message section -->
 
+    <footer>Dibuat dengan 💗 untukmu</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     <script>
-      function toggleMessage() {
-        const messageSection = document.querySelector(".message-section");
-        messageSection.classList.toggle("show");
+      // ==== Tanggal lahir: 27 Mei 2005 ====
+      const BIRTH_DATE = new Date(2005, 4, 27); // bulan 0-index -> 4 = Mei
+
+      function hitungUsia(birthDate, now) {
+        let usia = now.getFullYear() - birthDate.getFullYear();
+        const belumUlangTahun = now.getMonth() < birthDate.getMonth() || (now.getMonth() === birthDate.getMonth() && now.getDate() < birthDate.getDate());
+        if (belumUlangTahun) usia--;
+        return usia;
+      }
+
+      function hitungHariMenujuUlangTahun(birthDate, now) {
+        const thnIni = new Date(now.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+        if (thnIni < new Date(now.getFullYear(), now.getMonth(), now.getDate())) {
+          thnIni.setFullYear(thnIni.getFullYear() + 1);
+        }
+        const diffMs = thnIni.setHours(0, 0, 0, 0) - new Date(now.getFullYear(), now.getMonth(), now.getDate()).setHours(0, 0, 0, 0);
+        return Math.round(diffMs / (1000 * 60 * 60 * 24));
       }
 
       document.addEventListener("DOMContentLoaded", function () {
-        // Array berisi URL gambar
-        var images = document.querySelectorAll(".photo-grid img");
-        var imageUrls = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg"];
-        var currentIndex = 0;
+        // ==== Autoplay musik ====
+        const bgMusic = document.getElementById("bgMusic");
+        const muteBtn = document.getElementById("muteBtn");
+
+        function updateMuteIcon() {
+          muteBtn.textContent = bgMusic.muted ? "🔇" : "🔊";
+        }
+
+        // coba play dari awal (muted, biasanya diizinkan browser)
+        bgMusic.play().catch(() => {});
+
+        // begitu ada interaksi pertama dari user (klik/tap/scroll/tombol), unmute otomatis
+        function unmuteOnFirstInteraction() {
+          bgMusic.muted = false;
+          bgMusic.play().catch(() => {});
+          updateMuteIcon();
+          window.removeEventListener("click", unmuteOnFirstInteraction);
+          window.removeEventListener("touchstart", unmuteOnFirstInteraction);
+          window.removeEventListener("keydown", unmuteOnFirstInteraction);
+        }
+        window.addEventListener("click", unmuteOnFirstInteraction, { once: true });
+        window.addEventListener("touchstart", unmuteOnFirstInteraction, { once: true });
+        window.addEventListener("keydown", unmuteOnFirstInteraction, { once: true });
+
+        // tombol mute/unmute manual
+        muteBtn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          bgMusic.muted = !bgMusic.muted;
+          if (!bgMusic.muted) bgMusic.play().catch(() => {});
+          updateMuteIcon();
+        });
+
+        updateMuteIcon();
+
+        const now = new Date();
+        const usia = hitungUsia(BIRTH_DATE, now);
+        const hariLagi = hitungHariMenujuUlangTahun(BIRTH_DATE, now);
+
+        document.getElementById("ageText").textContent = "Sekarang usiamu " + usia + " tahun";
+        document.getElementById("ageInline").textContent = usia;
+
+        const isUlangTahunHariIni = now.getDate() === BIRTH_DATE.getDate() && now.getMonth() === BIRTH_DATE.getMonth();
+        const noteEl = document.getElementById("countdownNote");
+        if (isUlangTahunHariIni) {
+          noteEl.textContent = "Selamat ulang tahun hari ini! 🎈";
+        } else {
+          noteEl.textContent = hariLagi + " hari lagi menuju ulang tahunmu berikutnyaaaa";
+        }
+
+        // isi opsi tanggal 1-31
+        const daySelect = document.getElementById("dateDay");
+        for (let i = 1; i <= 31; i++) {
+          const opt = document.createElement("option");
+          opt.value = i;
+          opt.textContent = i;
+          daySelect.appendChild(opt);
+        }
+
+        // decorative floating balloons
+        const emojis = ["🎈", "🎈", "🎉", "🎂", "✨"];
+        const bgDecor = document.getElementById("bgDecor");
+        for (let i = 0; i < 10; i++) {
+          const el = document.createElement("div");
+          el.className = "balloon";
+          el.textContent = emojis[i % emojis.length];
+          el.style.left = Math.random() * 100 + "%";
+          el.style.animationDuration = 10 + Math.random() * 10 + "s";
+          el.style.animationDelay = Math.random() * 10 + "s";
+          el.style.fontSize = 1.6 + Math.random() * 1.8 + "rem";
+          bgDecor.appendChild(el);
+        }
+
+        // photo grid slider
+        const images = document.querySelectorAll(".photo-grid img");
+        const imageUrls = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg"];
+        let currentIndex = 0;
         function updateImages() {
           images.forEach(function (img, index) {
             img.classList.add("fade-out");
             setTimeout(function () {
               img.src = imageUrls[(currentIndex + index) % imageUrls.length];
               img.classList.remove("fade-out");
-            }, 2000);
+            }, 800);
           });
           currentIndex = (currentIndex + images.length) % imageUrls.length;
         }
-
         setInterval(updateImages, 4500);
 
-        function changeImage() {
-          // Add fade-out class to all images
-          imgElements.forEach((img) => img.classList.add("fade-out"));
+        // lock / gate logic — jawaban benar: tanggal 6, bulan Januari (1)
+        const unlockBtn = document.getElementById("unlockBtn");
+        const lockCard = document.getElementById("lockCard");
+        const lockWrapper = document.getElementById("lockWrapper");
+        const errorText = document.getElementById("errorText");
+        const messageSection = document.getElementById("messageSection");
 
-          // Wait for the fade-out effect to complete
-          setTimeout(() => {
-            // Change the source of each image
-            imgElements.forEach((img, index) => {
-              img.src = images[(currentIndex + index) % images.length];
-            });
+        unlockBtn.addEventListener("click", function () {
+          const day = document.getElementById("dateDay").value;
+          const month = document.getElementById("dateMonth").value;
 
-            // Remove fade-out class after changing the image
-            imgElements.forEach((img) => img.classList.remove("fade-out"));
+          if (!day || !month) {
+            errorText.textContent = "Yuk isi tanggal dan bulannya dulu ya~";
+            return;
+          }
 
-            // Update the currentIndex to the next image
-            currentIndex = (currentIndex + 1) % images.length;
-          }, 1000); // Match the timeout duration to the CSS transition duration
-        }
+          if (parseInt(day, 10) === 6 && parseInt(month, 10) === 1) {
+            errorText.textContent = "";
+            bgMusic.muted = false;
+            bgMusic.play().catch(() => {});
+            updateMuteIcon();
+            lockWrapper.style.transition = "opacity 0.5s ease";
+            lockWrapper.style.opacity = "0";
+            setTimeout(function () {
+              lockWrapper.style.display = "none";
+              messageSection.classList.add("show");
+              messageSection.scrollIntoView({ behavior: "smooth", block: "start" });
+              if (typeof confetti === "function") {
+                confetti({ particleCount: 140, spread: 90, origin: { y: 0.5 } });
+                setTimeout(function () {
+                  confetti({ particleCount: 80, spread: 120, origin: { y: 0.4 } });
+                }, 400);
+              }
+            }, 500);
+          } else {
+            errorText.textContent = "Hmm, hariii apaa hayoooo. Coba lagi ya! 😉";
+            lockCard.classList.remove("shake");
+            void lockCard.offsetWidth;
+            lockCard.classList.add("shake");
+          }
+        });
 
-        // Change the image every 2 seconds
-        setInterval(changeImage, 3000);
-
-        // Simulate loading time for preloader
+        // preloader
         setTimeout(function () {
-          document.getElementById("preloader").style.display = "none";
-          document.getElementById("content").style.display = "block";
-        }, 2500);
+          const preloader = document.getElementById("preloader");
+          preloader.style.opacity = "0";
+          setTimeout(function () {
+            preloader.style.display = "none";
+          }, 600);
+        }, 2200);
       });
     </script>
 
